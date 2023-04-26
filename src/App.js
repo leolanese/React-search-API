@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CardList from './components/CardList';
+import { robots } from './assets/robots'
+import Search from './components/Search';
 
 function App() {
+
+  const [appState, setAppState] = useState({
+    robots: robots,
+    searchField: '',
+  })
+
+  const onSearchChange = (event) => {
+    setAppState({ ...appState, searchField: event.target.value });
+  };
+
+  const filteredRobots = appState.robots.filter((robot) =>
+    robot.name.toLowerCase().includes(appState.searchField.toLowerCase())
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='tc'>
+      {/* they are communicating each other brother using state: 'useState' using Hooks */}
+      <Search onSearchChange={onSearchChange} />
+      <CardList robots={filteredRobots} />
     </div>
   );
 }
