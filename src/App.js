@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CardList from './components/CardList';
-import { robots } from './assets/robots'
+import { robots } from './assets/resultsMock'
 import Search from './components/Search';
 
 function App() {
