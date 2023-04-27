@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import CardList from './components/CardList';
 import { robots } from './assets/resultsMock'
 import Search from './components/Search';
@@ -9,6 +9,13 @@ function App() {
     robots: robots,
     searchField: '',
   })
+
+  useEffect(() => {
+    setAppState({ ...appState, searchField: '' });
+    // componentDidMount() logic here
+    // You DON'T use the keyword "this". Since it's not a class
+    // You DON'T have to reference the component itself.
+  }, [])
 
   const onSearchChange = (event) => {
     setAppState({ ...appState, searchField: event.target.value });
