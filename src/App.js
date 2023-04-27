@@ -11,10 +11,14 @@ function App() {
   })
 
   useEffect(() => {
-    setAppState({ ...appState, searchField: '' });
     // componentDidMount() logic here
     // You DON'T use the keyword "this". Since it's not a class
     // You DON'T have to reference the component itself.
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => {
+      setAppState({ ...appState, robots: users });
+    });
   }, [])
 
   const onSearchChange = (event) => {
