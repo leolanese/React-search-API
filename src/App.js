@@ -29,13 +29,22 @@ function App() {
     robot.name.toLowerCase().includes(appState.searchField.toLowerCase())
   );
 
-  return (
-    <div className='tc'>
-      {/* they are communicating each other brother using state: 'useState' using Hooks */}
-      <Search onSearchChange={onSearchChange} />
-      <CardList robots={filteredRobots} />
-    </div>
-  );
+  if (appState.robots.length === 0 ){
+    return (
+      <>
+        <h1>Loading... Please, wait.</h1>
+      </>
+    )
+  } else {
+    return (
+      <div className='tc'>
+        {/* they are communicating each other brother using state: 'useState' using Hooks */}
+        <Search onSearchChange={onSearchChange} />
+        <CardList robots={filteredRobots} />
+      </div>
+    )
+  }
+
 }
 
 export default App;
