@@ -1,14 +1,13 @@
 import React from 'react';
-import './Chield1.css';
 
-const Chield1 = props => {
+const Footer = props => {
     return (
         <div className="f1 tc">
-            <h1>Hi!</h1>
+            <p>Hi!</p>
             { props.messageToChield1 }
             { props.messageToChield2 }
         </div>
     );
 }
 
-export default Chield1;
+export default Footer;

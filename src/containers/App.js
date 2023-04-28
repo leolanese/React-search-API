@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from 'react'
 import CardList from '../components/CardList';
 // import { mockResults } from './assets/resultsMock'
+import Footer from '../components/Footer';
 import Search from '../components/Search';
 import Scroll from '../components/Scroll';
 
@@ -54,6 +55,12 @@ function App() {
         <Scroll>{/* Parent */}
            <CardList users={filteredUsers} /> {/* Children */}
         </Scroll>
+
+        <Footer
+            messageToChield1={'message 1'} 
+            messageToChield2={'message 2'} 
+        >
+        </Footer>
 
       </div>
     )
