@@ -39,14 +39,11 @@ function App() {
     user.name.toLowerCase().includes(appState.searchField.toLowerCase())
   );
 
-  if (appState.users.length === 0 ){
-    return (
+  return !appState.users.length ?
       <>
         <h1>Loading... Please, wait.</h1>
       </>
-    )
-  } else {
-    return (
+  : (
       <div className='tc'>
 
         {/* they are communicating each other brother using state: 'useState' using Hooks */}
@@ -58,13 +55,11 @@ function App() {
 
         <Footer
             messageToChield1={'message 1'} 
-            messageToChield2={'message 2'} 
-        >
+            messageToChield2={'message 2'} >
         </Footer>
 
       </div>
-    )
-  }
+  );
 
 }
 
