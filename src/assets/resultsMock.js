@@ -1,4 +1,4 @@
-export const robots = [
+export const users = [
     {
       id: 1,
       name: 'Leo Lanese',

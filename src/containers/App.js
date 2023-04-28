@@ -1,12 +1,13 @@
 import React, { useState, useEffect, memo } from 'react'
-import CardList from './components/CardList';
+import CardList from '../components/CardList';
 // import { mockResults } from './assets/resultsMock'
-import Search from './components/Search';
+import Search from '../components/Search';
+import Scroll from '../components/Scroll';
 
 function App() {
 
   const [appState, setAppState] = useState({
-    robots: [], // mockResults
+    users: [], // mockResults
     searchField: '',
   })
 
@@ -18,18 +19,26 @@ function App() {
     // here using native fetch: `window.fetch`
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
-    .then(users => setAppState({ ...appState, robots: users }));
+    .then((users) => setUsers(users));
   }, [])
+  // [appState] means that useEffect hook is watching for changes in appState, 
+  // and when appState changes, the useEffect hook will run again
+
+  const setUsers = (users) => {
+    setAppState((prevState) => ({ ...prevState, users: users }));
+    // (prevState => ({ ...prevState, users: users })). This ensures that you're always 
+    // using the most recent state when setting the new state
+  };
 
   const onSearchChange = (event) => {
     setAppState({ ...appState, searchField: event.target.value });
   };
 
-  const filteredRobots = appState.robots.filter((robot) =>
-    robot.name.toLowerCase().includes(appState.searchField.toLowerCase())
+  const filteredUsers = appState.users.filter((user) =>
+    user.name.toLowerCase().includes(appState.searchField.toLowerCase())
   );
 
-  if (appState.robots.length === 0 ){
+  if (appState.users.length === 0 ){
     return (
       <>
         <h1>Loading... Please, wait.</h1>
@@ -38,9 +47,14 @@ function App() {
   } else {
     return (
       <div className='tc'>
+
         {/* they are communicating each other brother using state: 'useState' using Hooks */}
         <Search onSearchChange={onSearchChange} />
-        <CardList robots={filteredRobots} />
+
+        <Scroll>{/* Parent */}
+           <CardList users={filteredUsers} /> {/* Children */}
+        </Scroll>
+
       </div>
     )
   }
