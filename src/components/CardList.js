@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Card from './Card';
 
 function CardList({robots}) {
@@ -29,4 +29,4 @@ function CardList({robots}) {
     );
 }
 
-export default CardList;
+export default memo(CardList);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import CardList from './components/CardList';
 // import { mockResults } from './assets/resultsMock'
 import Search from './components/Search';
@@ -47,4 +47,4 @@ function App() {
 
 }
 
-export default App;
+export default memo(App);

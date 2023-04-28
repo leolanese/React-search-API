@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 const Search = ({onSearchChange}) => {
     return (
@@ -8,4 +8,4 @@ const Search = ({onSearchChange}) => {
     );
 }
 
-export default Search;
+export default memo(Search);
