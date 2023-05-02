@@ -19,7 +19,6 @@ function App() {
     // componentDidMount() logic here
     // You DON'T use the keyword "this". Since it's not a class
     // You DON'T have to reference the component itself.
-
     // here using native fetch: `window.fetch`
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
