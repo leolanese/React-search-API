@@ -4,8 +4,11 @@ import CardList from '../components/CardList';
 import Footer from '../components/Footer';
 import Search from '../components/Search';
 import Scroll from '../components/Scroll';
+import useErrorBoundary from './../components/UseErrorBoundary';
 
 function App() {
+  const [data, setData] = useState(null);
+  const [error, throwError] = useErrorBoundary();
 
   const [appState, setAppState] = useState({
     users: [], // mockResults
@@ -20,8 +23,9 @@ function App() {
     // here using native fetch: `window.fetch`
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
-    .then((users) => setUsers(users));
-  }, [])
+    .then((users) => setUsers(users))
+    .catch((error) => throwError(error));
+  }, [throwError])
   // [appState] means that useEffect hook is watching for changes in appState, 
   // and when appState changes, the useEffect hook will run again
 
@@ -46,17 +50,17 @@ function App() {
   : (
       <div className='tc'>
 
-        {/* they are communicating each other brother using state: 'useState' using Hooks */}
-        <Search onSearchChange={onSearchChange} />
+          {/* they are communicating each other brother using state: 'useState' using Hooks */}
+          <Search onSearchChange={onSearchChange} />
 
-        <Scroll>{/* Parent */}
-           <CardList users={filteredUsers} /> {/* Children */}
-        </Scroll>
+          <Scroll>{/* Parent */}
+            <CardList users={filteredUsers} /> {/* Children */}
+          </Scroll>
 
-        <Footer
-            messageToChield1={'message 1'} 
-            messageToChield2={'message 2'} >
-        </Footer>
+          <Footer
+              messageToChield1={'message 1'} 
+              messageToChield2={'message 2'} >
+          </Footer>
 
       </div>
   );

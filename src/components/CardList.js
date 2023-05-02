@@ -2,6 +2,11 @@ import React, {memo} from 'react';
 import Card from './Card';
 
 function CardList({users}) {
+
+    // if (true) {
+    //     throw new Error('Error to be handle by ')
+    // } 
+
     const cardComponent = users.map( (user, i) => {
         // Warning: Each child in a list should have a unique "key" prop
         // Tip: When do a loop. We need a key: Key={} prop it is need it
@@ -25,6 +30,7 @@ function CardList({users}) {
             </header>
 
             {cardComponent}
+
         </div>
     );
 }
