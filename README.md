@@ -14,6 +14,18 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+```js
+Compiled successfully!
+
+You can now view robofriends in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://192.168.1.91:3000/
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+```
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
@@ -66,3 +78,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
+
