@@ -22,10 +22,10 @@ function CardList({users}) {
         <div>
             <header className="tc ph4">
             <h1 className="f3 f2-m f1-l fw2 black-90 mv3">
-                Search
+                Search 
             </h1>
             <h2 className="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
-                Seach and filtering using state and hooks
+                Seach by cat names. Filtering using state and hooks 
             </h2>
             </header>
 
