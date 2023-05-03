@@ -19,7 +19,7 @@ function App() {
     // componentDidMount() logic equivalent here
     // Note: With hooks, "this" keyword and component self-reference are not needed
     // Using native fetch: `window.fetch` by default
-    const fetchUsers = async () => {
+    const fetchUsers = async (signal) => {
       try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         if (!response.ok) {
@@ -28,11 +28,23 @@ function App() {
         const users = await response.json();
         setUsers(users);
       } catch (error) {
-        throwError(error);
+        if (error.name === 'AbortError') {
+          console.log('Fetch request was cancelled');
+        } else {
+          throwError(error);
+        }
       }
     };
     
-    fetchUsers();
+    const abortController = new AbortController();
+    fetchUsers(abortController.signal); // run it, run it
+  
+    return () => {
+      // cleanup function:
+      // Cancel any ongoing fetch requests when the component unmounts or throwError changes
+      abortController.abort();
+    };
+
   }, [throwError]);  // useEffect will run again if throwError changes
   // [appState] means that useEffect hook is watching for changes in appState, 
   // and when appState changes, the useEffect hook will run again
