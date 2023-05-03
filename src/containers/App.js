@@ -26,10 +26,11 @@ function App() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const users = await response.json();
+        console.table(users)
         setUsers(users);
       } catch (error) {
         if (error.name === 'AbortError') {
-          console.log('Fetch request was cancelled');
+          console.log('Fetch request was aborted');
         } else {
           throwError(error);
         }
@@ -38,16 +39,13 @@ function App() {
     
     const abortController = new AbortController();
     fetchUsers(abortController.signal);
-  
-    console.table(appState);
 
     return () => {
       // cleanup function:
       // Cancel any ongoing fetch requests when the component unmounts or throwError changes
       abortController.abort();
     };
-
-  }, [throwError]); // useEffect will run again if throwError changes
+  }, [throwError]); // if preset, effect will only activate if the values in the list change
   // [appState] means that useEffect hook is watching for changes in appState, 
   // and when appState changes, the useEffect hook will run again
 
