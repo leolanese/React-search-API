@@ -9,7 +9,6 @@ import useErrorBoundary from './../components/UseErrorBoundary';
 function App() {
   const [data, setData] = useState(null);
   const [error, throwError] = useErrorBoundary();
-
   const [appState, setAppState] = useState({
     users: [], // mockResults
     searchField: '',
@@ -21,7 +20,8 @@ function App() {
     // Using native fetch: `window.fetch` by default
     const fetchUsers = async (signal) => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        // The AbortController and its signal offer a way to communicate the abort event to the fetch request
+        const response = await fetch('https://jsonplaceholder.typicode.com/users', { signal });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -37,15 +37,17 @@ function App() {
     };
     
     const abortController = new AbortController();
-    fetchUsers(abortController.signal); // run it, run it
+    fetchUsers(abortController.signal);
   
+    console.table(appState);
+
     return () => {
       // cleanup function:
       // Cancel any ongoing fetch requests when the component unmounts or throwError changes
       abortController.abort();
     };
 
-  }, [throwError]);  // useEffect will run again if throwError changes
+  }, [throwError]); // useEffect will run again if throwError changes
   // [appState] means that useEffect hook is watching for changes in appState, 
   // and when appState changes, the useEffect hook will run again
 
