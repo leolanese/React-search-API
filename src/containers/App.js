@@ -16,15 +16,24 @@ function App() {
   })
 
   useEffect(() => {
-    // componentDidMount() logic here
-    // You DON'T use the keyword "this". Since it's not a class
-    // You DON'T have to reference the component itself.
-    // here using native fetch: `window.fetch`
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then((users) => setUsers(users))
-    .catch((error) => throwError(error));
-  }, [throwError])
+    // componentDidMount() logic equivalent here
+    // Note: With hooks, "this" keyword and component self-reference are not needed
+    // Using native fetch: `window.fetch` by default
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const users = await response.json();
+        setUsers(users);
+      } catch (error) {
+        throwError(error);
+      }
+    };
+    
+    fetchUsers();
+  }, [throwError]);  // useEffect will run again if throwError changes
   // [appState] means that useEffect hook is watching for changes in appState, 
   // and when appState changes, the useEffect hook will run again
 
