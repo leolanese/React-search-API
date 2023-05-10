@@ -8,16 +8,15 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes.
 
 ```js
 Compiled successfully!
 
-You can now view robofriends in the browser.
+You can now view bears in the browser.
 
   Local:            http://localhost:3000/
   On Your Network:  http://192.168.1.91:3000/

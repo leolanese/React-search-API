@@ -25,7 +25,7 @@ function CardList({users}) {
                 Search 
             </h1>
             <h2 className="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
-                Seach by cat names. Filtering using state and hooks 
+                Seach by bear names: Filtering using state and hooks 
             </h2>
             </header>
 
