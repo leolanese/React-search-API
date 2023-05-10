@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Search for bears using API, state and hooks 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
