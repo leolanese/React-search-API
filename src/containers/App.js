@@ -78,8 +78,8 @@ function App() {
           </Scroll>
 
           <Footer
-              messageToChield1={'message 1'} 
-              messageToChield2={'message 2'} >
+              messageToChield1={'Leo'} 
+              messageToChield2={'Lanese'} >
           </Footer>
 
       </div>
