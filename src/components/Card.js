@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Card = ({ name, email, id }) => {
-    // same as:
+    // same as passing: {props}
     // const { name, emial, id } = props;
 
     if (!name || !email || !id) {
