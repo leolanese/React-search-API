@@ -3,6 +3,11 @@ import React from 'react'
 const Card = ({ name, email, id }) => {
     // same as:
     // const { name, emial, id } = props;
+
+    if (!name || !email || !id) {
+      return <div>Invalid props</div>;
+    }
+
     return (
         <>
           <article className="tc grow bg-light-green br3 pa3 ma2 dib bw2 shadow-5 ">
@@ -12,7 +17,7 @@ const Card = ({ name, email, id }) => {
                 title={`a lovely bear called: ${name}`} 
                 alt="card person"/>
               <h1 className="f3 mb2">{ name }</h1>
-              <h2 className="f5 fw4 gray mt0">{ email }</h2>
+              {email && <h2 className="f5 fw4 gray mt0">{ email }</h2>}
             </div>
         </article>
         </>
